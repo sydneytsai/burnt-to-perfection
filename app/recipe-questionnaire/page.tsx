@@ -1,7 +1,8 @@
-"use client";
+"use client"; // Enable client-side hooks in Next.js
 
 import React, { useState } from "react";
 import axios from "axios";
+import Navbar from "@/components/Navbar"; // Import the Navbar component
 
 const RecipeGenerator = () => {
   // State to store answers to each question
@@ -48,7 +49,7 @@ const RecipeGenerator = () => {
   ];
 
   // Function to handle the user's answer selection
-  const handleAnswer = (answer) => {
+  const handleAnswer = (answer: string) => {
     setAnswers({
       ...answers,
       [questions[currentQuestion].field]: answer,
@@ -102,14 +103,17 @@ const RecipeGenerator = () => {
     }
 
     return (
-      <main className="min-h-screen flex flex-col">
-        <section className="flex-grow flex items-center justify-center">
-          <div className="text-center p-4 bg-white shadow-md rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">Recipe Generated!</h2>
+      <main className="min-h-screen flex flex-col bg-gray-100">
+        {/* Navbar Component */}
+        <Navbar />
+
+        <section className="flex-grow flex items-center justify-center px-4 py-8">
+          <div className="text-center p-6 bg-white shadow-md rounded-lg w-full max-w-3xl">
+            <h2 className="text-3xl font-bold mb-6">Recipe Generated!</h2>
             {loading ? (
-              <p>Generating recipe...</p>
+              <p className="text-lg text-gray-500">Generating recipe...</p>
             ) : (
-              <p>{generatedRecipe}</p>
+              <p className="text-lg">{generatedRecipe}</p>
             )}
           </div>
         </section>
@@ -118,17 +122,23 @@ const RecipeGenerator = () => {
   }
 
   return (
-    <main className="min-h-screen flex flex-col">
-      <section className="flex-grow flex items-center justify-center">
-        <div className="text-center p-4 bg-white shadow-md rounded-lg">
-          <h1 className="text-3xl font-bold mb-4">AI Recipe Generator</h1>
-          <h2 className="text-xl mb-4">{questions[currentQuestion].question}</h2>
+    <main className="min-h-screen flex flex-col bg-gray-100">
+      {/* Navbar Component */}
+      <Navbar />
+
+      <section className="flex-grow flex items-center justify-center px-4 py-8">
+        <div className="text-center w-full max-w-3xl">
+          {/* Header */}
+          <h1 className="text-4xl font-bold mb-6">AI Recipe Generator</h1>
+          <h2 className="text-2xl mb-6">{questions[currentQuestion].question}</h2>
+          
+          {/* Question Options */}
           <div className="space-y-4">
             {questions[currentQuestion].options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleAnswer(option)}
-                className="answer-button px-6 py-3 bg-green-500 text-white font-semibold rounded-lg w-full hover:bg-green-400"
+                className="px-6 py-3 text-blue-500 font-semibold rounded-lg w-full hover:bg-blue-100 transition duration-200"
               >
                 {option}
               </button>
