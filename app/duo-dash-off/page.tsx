@@ -121,7 +121,7 @@ export default function DuoDashOff() {
               <button
                 key={index}
                 onClick={() => handleDishTypeSelection(option)}
-                className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg w-full hover:bg-blue-400"
+                className="px-6 py-3 text-black-500 font-semibold rounded-lg w-full hover:bg-gray-100 transition duration-200"
               >
                 {option}
               </button>

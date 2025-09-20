@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 
 export default function SpinAMeal() {
-  const [recipes, setRecipes] = useState<string[]>([]);
+  const [meals, setMeals] = useState<string[]>([]);
   const [spinResult, setSpinResult] = useState<string | null>(null);
   const [inputMeal, setinputMeal] = useState<string>("");
   const [isSpinning, setIsSpinning] = useState(false);
@@ -14,30 +14,30 @@ export default function SpinAMeal() {
     setinputMeal(e.target.value);
   };
 
-  // Add recipe to wheel
+  // Add meal to wheel
   const addMeal = () => {
     if (inputMeal.trim()) {
-      setRecipes([...recipes, inputMeal]);
+      setMeals([...meals, inputMeal]);
       setinputMeal("");
     }
   };
 
   // Spin wheel
   const spinWheel = () => {
-    if (recipes.length === 0) return;
+    if (meals.length === 0) return;
     setIsSpinning(true);
     setSpinResult(null);
 
     setTimeout(() => {
-      const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
-      setSpinResult(randomRecipe);
+      const randomMeal = meals[Math.floor(Math.random() * meals.length)];
+      setSpinResult(randomMeal);
       setIsSpinning(false);
     }, 2000);
   };
 
   // Clear wheel
   const clearWheel = () => {
-    setRecipes([]);
+    setMeals([]);
     setSpinResult(null);
   };
 
@@ -81,8 +81,8 @@ export default function SpinAMeal() {
             }}
           >
             {/* Labels */}
-            {recipes.map((recipe, index) => {
-              const angle = (360 / recipes.length) * index;
+            {meals.map((meal, index) => {
+              const angle = (360 / meals.length) * index;
               return (
                 <div
                   key={index}
@@ -98,7 +98,7 @@ export default function SpinAMeal() {
                     transformOrigin: "center center",
                   }}
                 >
-                  {recipe}
+                  {meal}
                 </div>
               );
             })}
@@ -122,7 +122,7 @@ export default function SpinAMeal() {
           <button
             onClick={spinWheel}
             className="px-8 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition"
-            disabled={isSpinning || recipes.length === 0}
+            disabled={isSpinning || meals.length === 0}
           >
             {isSpinning ? "Spinning..." : "Spin the Wheel!"}
           </button>
@@ -130,7 +130,7 @@ export default function SpinAMeal() {
           <button
             onClick={clearWheel}
             className="px-8 py-3 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition"
-            disabled={recipes.length === 0}
+            disabled={meals.length === 0}
           >
             Clear the Wheel
           </button>

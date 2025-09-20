@@ -122,7 +122,7 @@ const RecipeGenerator = () => {
   }
 
   return (
-    <main className="min-h-screen flex flex-col bg-gray-100">
+    <main className="min-h-screen flex flex-col bg-white">
       {/* Navbar Component */}
       <Navbar />
 
@@ -138,7 +138,7 @@ const RecipeGenerator = () => {
               <button
                 key={index}
                 onClick={() => handleAnswer(option)}
-                className="px-6 py-3 text-blue-500 font-semibold rounded-lg w-full hover:bg-blue-100 transition duration-200"
+                className="px-6 py-3 text-black-500 font-semibold rounded-lg w-full hover:bg-gray-100 transition duration-200"
               >
                 {option}
               </button>
