@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Burnt to Perfection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="page-title">Burnt to Perfection</h1>
+
+        <!-- Hamburger menu top-right -->
+        <div class="hamburger-container">
+            <div id="hamburger" class="hamburger">&#9776;</div>
+            <div id="dropdown" class="dropdown">
+                <a href="#" id="openSearch">Find a Recipe</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- All Recipes Grid -->
+        <section id="allRecipes" class="recipe-grid"></section>
+
+        <!-- Search Section (hidden by default) -->
+        <section id="search" style="display:none;">
+            <h2>Find a Recipe</h2>
+
+            <label>
+                Ingredients you have:
+                <div id="ingredientTags" class="ingredient-tags"></div>
+                <input type="text" id="ingredientInput" placeholder="Type ingredient and press Enter">
+            </label>
+
+            <label>
+                Dish type:
+                <select id="typeSelect">
+                    <option value="any">Any</option>
+                    <option value="main">Main</option>
+                    <option value="side">Side</option>
+                    <option value="dessert">Dessert</option>
+                </select>
+            </label>
+
+            <button id="searchBtn">Search</button>
+
+            <button id="clearSearchBtn">Clear Search</button>
+
+            <h2>Search Results</h2>
+            <section id="searchResults" class="recipe-grid">
+                <!-- Filtered recipe cards will appear here -->
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Burnt to Perfection</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="recipes.js"></script>
+    <script src="search.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
