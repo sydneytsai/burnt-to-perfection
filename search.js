@@ -48,9 +48,9 @@ searchBtn.addEventListener("click", () => {
     // Filter by dish type
     const typeMatch = selectedType === "any" || recipe.type === selectedType;
 
-    // Filter by ingredients (recipe must contain ALL entered ingredients)
+    // Filter by ingredients (recipe must contain ALL entered ingredients, partial match allowed)
     const ingredientsMatch = ingredients.every(ing =>
-      recipe.ingredients.includes(ing)
+      recipe.ingredients.some(recipeIng => recipeIng.toLowerCase().includes(ing))
     );
 
     return typeMatch && ingredientsMatch;
@@ -96,6 +96,6 @@ clearSearchBtn.addEventListener("click", () => {
 });
 
 backBtn.addEventListener("click", () => {
-    // Go back to the main page
-    window.location.href = "index.html"; // or your main grid page
+  // Go back to the main page
+  window.location.href = "index.html"; // or your main grid page
 });
