@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Find a Recipe | Burnt to Perfection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Find a Recipe</h1>
+    </header>
+
+    <main>
+        <!-- Back button -->
+        <button id="backBtn" class="back-button">← Back to Recipes</button>
+
+        <div class="search-controls">
+            <!-- Ingredients input -->
+            <label class="search-label">
+                Ingredients you have:
+                <div id="ingredientTags" class="ingredient-tags"></div>
+                <input type="text" id="ingredientInput" placeholder="Type ingredient and press Enter">
+            </label>
+
+            <!-- Dish type filter -->
+            <label class="search-label">
+                Dish type:
+                <select id="typeSelect">
+                    <option value="any">Any</option>
+                    <option value="main">Main</option>
+                    <option value="side">Side</option>
+                    <option value="dessert">Dessert</option>
+                </select>
+            </label>
+
+            <!-- Search buttons -->
+            <button id="searchBtn">Search</button>
+            <button id="clearSearchBtn">Clear Search</button>
+        </div>
+
+        <!-- Search results -->
+        <section id="searchResults" class="recipe-grid"></section>
+    </main>
+
+
+    <footer>
+        <p>© 2026 Burnt to Perfection</p>
+    </footer>
+
+    <script src="recipes.js"></script>
+    <script src="search.js"></script>
+</body>
+
+</html>

@@ -179,3 +179,34 @@ footer {
     background-color: #ff914d;   /* Darker on hover */
     transform: translateY(-2px);
 }
+
+/* Back button on its own line */
+.back-button {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+/* Each label on a separate line */
+.search-label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+/* Inputs and select full width */
+.search-label input,
+.search-label select {
+    width: 30%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Buttons spacing */
+#searchBtn,
+#clearSearchBtn {
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}

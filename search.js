@@ -4,6 +4,7 @@ const searchBtn = document.getElementById("searchBtn");
 const typeSelect = document.getElementById("typeSelect");
 const searchResultsSection = document.getElementById("searchResults");
 const clearSearchBtn = document.getElementById("clearSearchBtn");
+const backBtn = document.getElementById("backBtn");
 
 let ingredients = []; // array of added ingredients
 
@@ -92,4 +93,9 @@ clearSearchBtn.addEventListener("click", () => {
   searchResultsSection.innerHTML = "";
   searchResultsSection.style.display = "none";
   allRecipesSection.style.display = "grid";
+});
+
+backBtn.addEventListener("click", () => {
+    // Go back to the main page
+    window.location.href = "index.html"; // or your main grid page
 });
