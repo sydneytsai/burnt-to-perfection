@@ -125,12 +125,57 @@ const recipes = [
         image: "recipes/images/asian-pasta-salad.jpg"
     },
     {
-        name: "Mac and Cheese",
-        type: "main",
-        ingredients: [
-            "pasta"
-        ],
-        url: "recipes/mac-and-cheese.html",
-        image: "recipes/images/mac-and-cheese.jpg"
+    name: "Mac and Cheese",
+    type: "main",
+    ingredients: [
+        "pasta",
+        "olive oil",
+        "unsalted butter",
+        "all-purpose flour",
+        "milk",
+        "heavy cream",
+        "shredded sharp cheddar",
+        "gruyere",
+        "parmesan",
+        "smoked paprika",
+        "salt",
+        "pepper",
+        "panko"
+    ],
+    url: "recipes/mac-and-cheese.html",
+    image: "recipes/images/mac-and-cheese.jpg"
+    },
+    {
+    name: "Miso Mushroom Leek Pasta",
+    type: "main",
+    ingredients: [
+        "olive oil",
+        "leeks",
+        "white miso",
+        "mushrooms",
+        "pasta",
+        "parmesan",
+        "sherry or red wine vinegar",
+        "parsley"
+    ],
+    url: "recipes/miso-mushroom-leek-pasta.html",
+    image: "recipes/images/miso-mushroom-leek-pasta.jpg"
+    },
+    {
+    name: "Beef Enoki Rolls",
+    type: "main",
+    ingredients: [
+        "thin sliced beef",
+        "enoki mushrooms",
+        "sweet onion",
+        "eggs",
+        "dashi",
+        "green onion tops",
+        "soy sauce",
+        "mirin or sugar",
+        "black pepper"
+    ],
+    url: "recipes/beef-enoki-rolls.html",
+    image: "recipes/images/beef-enoki-rolls.jpg"
     }
 ];
