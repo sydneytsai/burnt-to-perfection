@@ -1,14 +1,15 @@
 const allRecipesSection = document.getElementById("allRecipes");
-const hamburger = document.getElementById("hamburger");
-const dropdown = document.getElementById("dropdown");
-const openSearch = document.getElementById("openSearch");
-const searchSection = document.getElementById("search");
+const tabs = document.querySelectorAll(".tab");
 
-// Render all recipes as grid cards
-function renderAllRecipes() {
+// Function to render recipes by category
+function renderRecipes(category = "all") {
   allRecipesSection.innerHTML = "";
 
-  recipes.forEach(recipe => {
+  const filteredRecipes = category === "all"
+    ? recipes
+    : recipes.filter(recipe => recipe.type === category);
+
+  filteredRecipes.forEach(recipe => {
     const card = document.createElement("div");
     card.className = "recipe-card";
 
@@ -25,17 +26,28 @@ function renderAllRecipes() {
   });
 }
 
-renderAllRecipes();
+// Initial render
+renderRecipes();
 
-// Toggle dropdown menu
-hamburger.addEventListener("click", () => {
-  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-});
+tabs.forEach(tab => {
+  tab.addEventListener("click", (e) => {
+    // If this tab is an external link, allow default navigation
+    if (tab.getAttribute("href") === "search.html") return;
 
-// Click "Find a Recipe" in dropdown
-openSearch.addEventListener("click", (e) => {
-  e.preventDefault();
-  searchSection.style.display = "block";
-  dropdown.style.display = "none";
-  window.scrollTo({ top: searchSection.offsetTop, behavior: 'smooth' });
+    // Otherwise, prevent default and handle as a category tab
+    e.preventDefault();
+
+    // Remove 'active' from all tabs
+    tabs.forEach(t => t.classList.remove("active"));
+
+    // Add 'active' to clicked tab
+    tab.classList.add("active");
+
+    // Render recipes for the selected category
+    const category = tab.dataset.category || "all"; // fallback to 'all'
+    renderRecipes(category);
+
+    // Smooth scroll to recipe section
+    allRecipesSection.scrollIntoView({ behavior: "smooth" });
+  });
 });

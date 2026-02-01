@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Burnt to Perfection</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
         <h1 class="page-title">Burnt to Perfection</h1>
 
-        <!-- Hamburger menu -->
-        <div class="hamburger-container">
-            <div id="hamburger" class="hamburger">&#9776;</div>
-            <div id="dropdown" class="dropdown">
-                <a href="search.html">Find a Recipe</a> <!-- link to search page -->
-            </div>
-        </div>
+        <!-- Tabs navigation instead of hamburger -->
+        <nav class="tab-nav">
+            <a href="search.html" class="tab">Find a Recipe</a>
+        </nav>
     </header>
 
     <main>
+        <nav class="tab-nav">
+            <a href="#allRecipes" class="tab active" data-category="all">All Recipes</a>
+            <a href="#main" class="tab" data-category="main">Mains</a>
+            <a href="#side" class="tab" data-category="side">Sides</a>
+            <a href="#dessert" class="tab" data-category="dessert">Desserts</a>
+            <a href="#baked-good" class="tab" data-category="baked good">Baked Goods</a>
+        </nav>
         <!-- Main recipe grid -->
         <section id="allRecipes" class="recipe-grid"></section>
     </main>
@@ -30,4 +36,5 @@
     <script src="recipes.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

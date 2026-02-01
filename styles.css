@@ -1,35 +1,85 @@
-/* Header */
+/* ===============================
+   Color Palette (Fun & Playful)
+================================ */
+:root {
+  --primary: #958ade;      /* light lavender */
+  --secondary: #FFE8A3;    /* butter yellow */
+  --accent: #FFE8A3;       /* blush pink */
+  --bg-soft: #FFF9EE;      /* ultra-soft lavender white */
+  --text-dark: #48426c;
+  --white: #FFFFFF;
+}
+
+/* ===============================
+   Header
+================================ */
 header {
-  background: #ff914d;
-  padding: 1rem 2rem;
+  background: var(--primary);
+  padding: 2.5rem 2rem;
   position: relative;
-  text-align: center; /* centers title horizontally */
-  color: white;
+  text-align: center;
 }
 
 header .page-title {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--bg-soft);
+  position: relative;
 }
 
-/* Hamburger top-right */
-.hamburger-container {
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
+header .page-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 6px;
+  margin: 0.6rem auto 0;
+  background: var(--secondary);
+  border-radius: 3px;
 }
 
-.hamburger {
-  font-size: 1.5rem;
-  cursor: pointer;
+
+/* ===============================
+   Tabs Navigation
+================================ */
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap; /* responsive wrap */
 }
 
-/* Dropdown menu */
+.tab {
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    color: var(--text-dark);
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.tab:hover {
+    background: var(--secondary);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+.tab.active {
+    background: var(--secondary);
+    color: var(--text-dark);
+    box-shadow: 0 4px 0 rgba(72, 66, 108, 0.2);
+}
+
+/* ===============================
+   Dropdown Menu
+================================ */
 .dropdown {
   display: none;
   position: absolute;
   right: 0;
-  background: white;
+  background: var(--white);
   min-width: 150px;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -38,18 +88,20 @@ header .page-title {
 }
 
 .dropdown a {
-  color: #ff5c00;
+  color: var(--primary);
   padding: 12px 16px;
   display: block;
   text-decoration: none;
 }
 
 .dropdown a:hover {
-  background: #ff914d;
-  color: white;
+  background: var(--accent);
+  color: var(--white);
 }
 
-/* Recipe Grid */
+/* ===============================
+   Recipe Grid
+================================ */
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -60,16 +112,18 @@ header .page-title {
 }
 
 .recipe-card {
-  background: white;
-  border-radius: 8px;
+  background: var(--white);
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+  border: 5px solid transparent;
 }
 
 .recipe-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-color: var(--accent);
 }
 
 .recipe-card img {
@@ -86,7 +140,7 @@ header .page-title {
 .recipe-info h3 {
   margin: 0.5rem 0 0.3rem;
   font-size: 1.2rem;
-  color: #ff5c00;
+  color: var(--primary);
 }
 
 .recipe-info p {
@@ -95,118 +149,172 @@ header .page-title {
   font-size: 0.9rem;
 }
 
-/* Search Section */
-#search {
-  background: #fff1e6;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 2rem auto;
-  max-width: 800px;
+/* ===============================
+   Search Page Styles
+================================ */
+body {
+    font-family: 'Arial', sans-serif;
+    background: var(--bg-soft);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
 }
 
-#search label {
-  display: block;
-  margin-bottom: 1rem;
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-#search input, #search select {
-  padding: 0.5rem;
-  margin-top: 0.3rem;
-  width: 100%;
+/* Search Container */
+.search-controls {
+    background: var(--white);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Labels */
+.search-label {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+/* Inputs and Selects */
+#ingredientInput {
+  width: 100%;       /* full width for typing ingredients */
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
   box-sizing: border-box;
+  margin-top: 0.3rem;
 }
 
-#search button {
-  padding: 0.7rem 1.5rem;
-  background: #ff5c00;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+#typeSelect {
+  width: 30%;       /* optional: smaller width */
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-top: 0.3rem;
 }
 
-#search button:hover {
-  background: #e04e00;
-}
-
-#results li {
-  margin: 0.5rem 0;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background: #eee;
-  margin-top: 3rem;
-}
-
+/* Ingredient Tags */
 .ingredient-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.3rem;
 }
 
 .ingredient-tag {
-  background: #ff5c00;
-  color: white;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
+    background: var(--primary);
+    color: var(--white);
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
 }
 
 .ingredient-tag span {
-  margin-left: 0.4rem;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.back-button {
-    display: inline-block;
-    padding: 10px 16px;
-    margin: 10px 0;
-    background-color: #ff914d;   /* Orange button */
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
+    margin-left: 0.5rem;
+    cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
 }
 
-.back-button:hover {
-    background-color: #ff914d;   /* Darker on hover */
+/* Buttons */
+#searchBtn,
+#clearSearchBtn {
+    padding: 0.7rem 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#searchBtn {
+    background: var(--primary);
+    color: var(--white);
+}
+
+#searchBtn:hover {
+    background: #7d6ee2;
     transform: translateY(-2px);
 }
 
-/* Back button on its own line */
-.back-button {
-    display: block;
-    margin-bottom: 1.5rem;
-}
-
-/* Each label on a separate line */
-.search-label {
-    display: block;
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-
-/* Inputs and select full width */
-.search-label input,
-.search-label select {
-    width: 30%;
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Buttons spacing */
-#searchBtn,
 #clearSearchBtn {
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
+    background: var(--secondary);
+    color: var(--text-dark);
+}
+
+#clearSearchBtn:hover {
+    background: #ffd966;
+    transform: translateY(-2px);
+}
+
+/* Back Button */
+.back-button {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--secondary);
+    color: var(--text-dark);
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.back-button:hover {
+    background: #ffb703;
+    transform: translateY(-2px);
+}
+
+/* Search Results Grid */
+#searchResults {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Individual Recipe Cards */
+#searchResults .recipe-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 3px solid transparent;
+}
+
+#searchResults .recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: var(--accent);
+}
+
+#searchResults .recipe-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+#searchResults .recipe-info {
+    padding: 1rem;
+    text-align: center;
+}
+
+#searchResults .recipe-info h3 {
+    margin: 0.5rem 0 0.3rem;
+    font-size: 1.2rem;
+    color: var(--primary);
 }
