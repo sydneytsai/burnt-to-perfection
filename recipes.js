@@ -123,5 +123,14 @@ const recipes = [
         ],
         url: "recipes/asian-pasta-salad.html",
         image: "recipes/images/asian-pasta-salad.jpg"
+    },
+    {
+        name: "Mac and Cheese",
+        type: "main",
+        ingredients: [
+            "pasta"
+        ],
+        url: "recipes/mac-and-cheese.html",
+        image: "recipes/images/mac-and-cheese.jpg"
     }
 ];
