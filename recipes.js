@@ -134,7 +134,7 @@ const recipes = [
         "all-purpose flour",
         "milk",
         "heavy cream",
-        "shredded sharp cheddar",
+        "cheddar",
         "gruyere",
         "parmesan",
         "smoked paprika",
@@ -155,7 +155,7 @@ const recipes = [
         "mushrooms",
         "pasta",
         "parmesan",
-        "sherry or red wine vinegar",
+        "red wine vinegar",
         "parsley"
     ],
     url: "recipes/miso-mushroom-leek-pasta.html",
@@ -165,17 +165,146 @@ const recipes = [
     name: "Beef Enoki Rolls",
     type: "main",
     ingredients: [
-        "thin sliced beef",
+        "beef",
         "enoki mushrooms",
         "sweet onion",
         "eggs",
         "dashi",
-        "green onion tops",
+        "green onion",
         "soy sauce",
-        "mirin or sugar",
+        "mirin",
         "black pepper"
     ],
     url: "recipes/beef-enoki-rolls.html",
     image: "recipes/images/beef-enoki-rolls.jpg"
+    },
+    {
+    name: "Chicken Pot Pie",
+    type: "main",
+    ingredients: [
+        "celery",
+        "carrots",
+        "onion",
+        "oil",
+        "oil",
+        "flour",
+        "butter",
+        "white wine",
+        "chicken stock",
+        "parsley",
+        "heavy cream",
+        "chicken",
+        "pie dough",
+        "egg"
+    ],
+    url: "recipes/chicken-pot-pie.html",
+    image: "recipes/images/chicken-pot-pie.jpg"
+    },
+    {
+    name: "Hong Shao Rou",
+    type: "main",
+    ingredients: [
+        "pork belly",
+        "oil",
+        "sugar",
+        "shaoxing wine",
+        "soy sauce",
+        "white pepper",
+        "ginger",
+        "green onions",
+        "star anise"
+    ],
+    url: "recipes/hong-shao-rou.html",
+    image: "recipes/images/hong-shao-rou.jpg"
+    },
+    {
+    name: "Steamed Buns",
+    type: "side",
+    ingredients: [
+        "flour",
+        "yeast",
+        "baking powder",
+        "sugar",
+        "salt",
+        "milk"
+    ],
+    url: "recipes/steamed-buns.html",
+    image: "recipes/images/steamed-buns.jpg"
+    },
+    {
+    name: "Shortbread",
+    type: "dessert",
+    ingredients: [
+        "flour",
+        "sugar",
+        "vanilla",
+        "butter"
+    ],
+    url: "recipes/shortbread.html",
+    image: "recipes/images/shortbread.jpg"
+    },
+    {
+    name: "Brown Butter Oatmeal Cookies",
+    type: "dessert",
+    ingredients: [
+        "flour",
+        "brown sugar",
+        "vanilla",
+        "butter",
+        "eggs",
+        "oats",
+        "baking soda",
+        "salt"
+    ],
+    url: "recipes/brown-butter-oatmeal-cookies.html",
+    image: "recipes/images/brown-butter-oatmeal-cookies.jpg"
+    },
+    {
+    name: "Tiramisu",
+    type: "dessert",
+    ingredients: [
+        "egg",
+        "sugar",
+        "rum",
+        "marscapone",
+        "heavy cream",
+        "lady fingers",
+        "espresso"
+    ],
+    url: "recipes/tiramisu.html",
+    image: "recipes/images/tiramisu.jpg"
+    },
+    {
+    name: "Sweet Potato Miso Creme Brulee",
+    type: "dessert",
+    ingredients: [
+        "egg",
+        "heavy cream",
+        "sugar",
+        "vanilla",
+        "white miso",
+        "japanese yam"
+    ],
+    url: "recipes/tiramisu.html",
+    image: "recipes/images/tiramisu.jpg"
+    },
+    {
+    name: "Marry Me Chicken Pasta",
+    type: "main",
+    ingredients: [
+        "pasta",
+        "heavy cream",
+        "paprika",
+        "oregano",
+        "chicken stock",
+        "chicken",
+        "sundried tomatoes",
+        "parmesan",
+        "garlic",
+        "spinach",
+        "oilive oil"
+    ],
+    url: "recipes/marry-me-chicken-pasta.html",
+    image: "recipes/images/marry-me-chicken-pasta.jpg"
     }
 ];
