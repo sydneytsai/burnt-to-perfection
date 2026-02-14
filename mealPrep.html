@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Burnt to Perfection - Meal Prep</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+    <h1 class="page-title">Burnt to Perfection</h1>
+    <nav class="tab-nav">
+        <a href="index.html" class="page-link">All Recipes</a>
+        <a href="search.html" class="page-link">Find a Recipe</a>
+        <a href="mealPrep.html" class="page-link active">Meal Prep</a>
+    </nav>
+</header>
+
+<main class="meal-layout">
+
+    <!-- Left: Drag Recipes -->
+    <section class="meal-recipes">
+        <h2>Drag Recipes</h2>
+        <div id="recipeList"></div>
+    </section>
+
+    <!-- Right: Weekly Calendar -->
+    <section class="week-calendar" id="calendar"></section>
+
+</main>
+
+<!-- Grocery List -->
+<section class="grocery-section">
+    <h2>🛒 Grocery List</h2>
+    <ul id="groceryItems"></ul>
+</section>
+
+<footer>
+    <p>© 2026 Burnt to Perfection</p>
+</footer>
+
+<!-- Scripts -->
+<script src="recipes.js"></script>
+<script src="mealPrep.js"></script>
+
+</body>
+</html>

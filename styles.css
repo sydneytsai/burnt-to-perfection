@@ -318,3 +318,147 @@ main {
     font-size: 1.2rem;
     color: var(--primary);
 }
+/* ===============================
+   Meal Prep Layout
+================================ */
+.meal-layout {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  flex-wrap: wrap; /* responsive for small screens */
+}
+
+/* Recipe Drag Panel */
+.meal-recipes {
+  flex: 1 1 250px; /* grows, but minimum width 250px */
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.meal-recipes h2 {
+  margin-top: 0;
+  color: var(--primary);
+  text-align: center;
+}
+
+/* Recipe Cards in Drag Panel */
+#recipeList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+#recipeList .recipe-card {
+  cursor: grab;
+}
+
+/* Weekly Calendar */
+.week-calendar {
+  flex: 2 1 600px; /* bigger than recipe panel */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+
+.day-column {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 0.5rem;
+  min-height: 200px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+
+.day-column h3 {
+  text-align: center;
+  margin: 0.5rem 0;
+  color: var(--primary);
+}
+
+.day-column.drag-over {
+  background: var(--secondary);
+}
+
+/* Planned Recipes inside Calendar */
+.planned-recipe {
+  background: var(--accent);
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  margin: 0.3rem 0;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text-dark);
+  transition: transform 0.1s;
+}
+
+.planned-recipe:hover {
+  transform: scale(1.03);
+}
+
+/* Grocery List Section */
+.grocery-section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.grocery-section h2 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+.grocery-section ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .meal-layout {
+    flex-direction: column;
+  }
+
+  .week-calendar {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .week-calendar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===============================
+   Top Page Links
+================================ */
+.page-link {
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    background: var(--bg-soft);
+    color: var(--text-dark);
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.page-link:hover {
+    background: var(--secondary);
+    color: var(--text-dark);
+    transform: translateY(-2px);
+}
+
+.page-link.active {
+    background: var(--secondary);
+    color: var(--text-dark);
+    box-shadow: 0 4px 0 rgba(72, 66, 108, 0.2);
+}

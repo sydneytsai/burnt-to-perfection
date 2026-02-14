@@ -8,33 +8,38 @@
 </head>
 
 <body>
-    <header>
-        <h1 class="page-title">Burnt to Perfection</h1>
 
-        <!-- Tabs navigation instead of hamburger -->
-        <nav class="tab-nav">
-            <a href="search.html" class="tab">Find a Recipe</a>
-        </nav>
-    </header>
+<header>
+    <h1 class="page-title">Burnt to Perfection</h1>
+    <nav class="tab-nav">
+        <a href="index.html" class="page-link active">All Recipes</a>
+        <a href="search.html" class="page-link">Find a Recipe</a>
+        <a href="mealPrep.html" class="page-link">Meal Prep</a>
+    </nav>
+</header>
 
-    <main>
-        <nav class="tab-nav">
-            <a href="#allRecipes" class="tab active" data-category="all">All Recipes</a>
-            <a href="#main" class="tab" data-category="main">Mains</a>
-            <a href="#side" class="tab" data-category="side">Sides</a>
-            <a href="#dessert" class="tab" data-category="dessert">Desserts</a>
-            <a href="#baked-good" class="tab" data-category="baked good">Baked Goods</a>
-        </nav>
-        <!-- Main recipe grid -->
-        <section id="allRecipes" class="recipe-grid"></section>
-    </main>
+<main>
 
-    <footer>
-        <p>© 2026 Burnt to Perfection</p>
-    </footer>
+    <!-- Recipe Category Tabs -->
+    <nav class="tab-nav">
+        <a href="#main" class="tab" data-category="main">Mains</a>
+        <a href="#side" class="tab" data-category="side">Sides</a>
+        <a href="#dessert" class="tab" data-category="dessert">Desserts</a>
+        <a href="#baked-good" class="tab" data-category="baked good">Baked Goods</a>
+    </nav>
 
-    <script src="recipes.js"></script>
-    <script src="index.js"></script>
+    <!-- Recipe Grid -->
+    <section id="allRecipes" class="recipe-grid"></section>
+
+</main>
+
+<footer>
+    <p>© 2026 Burnt to Perfection</p>
+</footer>
+
+<!-- Scripts -->
+<script src="recipes.js"></script>
+<script src="index.js"></script>
+
 </body>
-
 </html>

@@ -10,12 +10,14 @@
 <body>
     <header>
         <h1 class="page-title">Burnt to Perfection</h1>
+        <nav class="tab-nav">
+            <a href="index.html" class="page-link">All Recipes</a>
+            <a href="search.html" class="page-link active">Find a Recipe</a>
+            <a href="mealPrep.html" class="page-link">Meal Prep</a>
+        </nav>
     </header>
 
     <main>
-        <!-- Back button -->
-        <button id="backBtn" class="back-button">← Back to All Recipes</button>
-
         <div class="search-controls">
             <!-- Ingredients input -->
             <label class="search-label">
@@ -45,11 +47,11 @@
         <section id="searchResults" class="recipe-grid"></section>
     </main>
 
-
     <footer>
         <p>© 2026 Burnt to Perfection</p>
     </footer>
 
+    <!-- Scripts -->
     <script src="recipes.js"></script>
     <script src="search.js"></script>
 </body>

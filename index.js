@@ -1,5 +1,5 @@
 const allRecipesSection = document.getElementById("allRecipes");
-const tabs = document.querySelectorAll(".tab");
+const categoryTabs = document.querySelectorAll(".tab"); // only category tabs
 
 // Function to render recipes by category
 function renderRecipes(category = "all") {
@@ -29,25 +29,20 @@ function renderRecipes(category = "all") {
 // Initial render
 renderRecipes();
 
-tabs.forEach(tab => {
+// Handle in-page category tabs
+categoryTabs.forEach(tab => {
   tab.addEventListener("click", (e) => {
-    // If this tab is an external link, allow default navigation
-    if (tab.getAttribute("href") === "search.html") return;
+    e.preventDefault(); // only for category tabs
 
-    // Otherwise, prevent default and handle as a category tab
-    e.preventDefault();
-
-    // Remove 'active' from all tabs
-    tabs.forEach(t => t.classList.remove("active"));
-
-    // Add 'active' to clicked tab
+    // Remove 'active' from all category tabs
+    categoryTabs.forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
 
-    // Render recipes for the selected category
-    const category = tab.dataset.category || "all"; // fallback to 'all'
+    // Render selected category
+    const category = tab.dataset.category || "all";
     renderRecipes(category);
 
-    // Smooth scroll to recipe section
+    // Scroll smoothly to recipe section
     allRecipesSection.scrollIntoView({ behavior: "smooth" });
   });
 });
