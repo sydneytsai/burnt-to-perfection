@@ -1,7 +1,7 @@
 const recipes = [
     {
         name: "Banana Bread",
-        type: "baked good",
+        type: "dessert",
         ingredients: [
             "butter",
             "bananas",
@@ -35,7 +35,7 @@ const recipes = [
     },
     {
         name: "Pineapple Buns",
-        type: "baked good",
+        type: "dessert",
         ingredients: [
             "heavy cream",
             "milk",
@@ -55,7 +55,7 @@ const recipes = [
     },
     {
         name: "Cardamom Buns",
-        type: "baked good",
+        type: "dessert",
         ingredients: [
             "all purpose flour",
             "salt",
@@ -72,7 +72,7 @@ const recipes = [
     },
     {
         name: "Pumpkin Bread",
-        type: "baked good",
+        type: "dessert",
         ingredients: [
             "butter",
             "pumpkin pie spice",

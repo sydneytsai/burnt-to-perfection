@@ -19,12 +19,21 @@
 </header>
 
 <main class="meal-layout">
-
     <!-- Left: Drag Recipes -->
     <section class="meal-recipes">
         <h2>Drag Recipes</h2>
-        <div id="recipeList"></div>
-    </section>
+
+        <!-- Recipe Filters -->
+        <div class="recipe-filters">
+            <button class="filter-btn" data-type="all">All</button>
+            <button class="filter-btn" data-type="main">Mains</button>
+            <button class="filter-btn" data-type="side">Sides</button>
+            <button class="filter-btn" data-type="dessert">Desserts</button>
+        </div>
+
+    <div id="recipeList"></div>
+</section>
+
 
     <!-- Right: Weekly Calendar -->
     <section class="week-calendar" id="calendar"></section>

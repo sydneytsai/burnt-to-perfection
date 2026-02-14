@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Assign unique IDs
   recipes.forEach((recipe, index) => recipe.id = index);
 
   const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
   const calendar = document.getElementById("calendar");
 
+  // Build weekly calendar
   days.forEach(day => {
     const column = document.createElement("div");
     column.className = "day-column";
@@ -14,16 +16,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const recipeList = document.getElementById("recipeList");
 
-  recipes.forEach(recipe => {
-    const card = document.createElement("div");
-    card.className = "recipe-card";
-    card.draggable = true;
-    card.dataset.id = recipe.id;
-    card.innerHTML = `<div class="recipe-info"><h3>${recipe.name}</h3></div>`;
-    card.addEventListener("dragstart", e => e.dataTransfer.setData("id", recipe.id));
-    recipeList.appendChild(card);
+  // Function to render recipes (with optional category filter)
+  function renderRecipes(filter = "all") {
+    recipeList.innerHTML = "";
+    const filtered = filter === "all" ? recipes : recipes.filter(r => r.type === filter);
+
+    filtered.forEach(recipe => {
+      const card = document.createElement("div");
+      card.className = "recipe-card";
+      card.draggable = true;
+      card.dataset.id = recipe.id;
+      card.dataset.category = recipe.type;
+      card.innerHTML = `<div class="recipe-info"><h3>${recipe.name}</h3></div>`;
+      card.addEventListener("dragstart", e => e.dataTransfer.setData("id", recipe.id));
+      recipeList.appendChild(card);
+    });
+  }
+
+  // Initial render: show all recipes
+  renderRecipes();
+
+  // Setup filter buttons
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const type = btn.dataset.type;
+      renderRecipes(type);
+    });
   });
 
+  // Drag & Drop functionality
   function enableDrop(column) {
     column.addEventListener("dragover", e => { e.preventDefault(); column.classList.add("drag-over"); });
     column.addEventListener("dragleave", () => column.classList.remove("drag-over"));
@@ -33,16 +57,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const id = e.dataTransfer.getData("id");
       const recipe = recipes.find(r => r.id == id);
       if (!recipe) return;
+
       const planned = document.createElement("div");
       planned.className = "planned-recipe";
       planned.dataset.id = recipe.id;
       planned.textContent = recipe.name;
+
       planned.addEventListener("click", () => { planned.remove(); updateGroceryList(); });
+
       column.appendChild(planned);
       updateGroceryList();
     });
   }
 
+  // Grocery List updater
   function updateGroceryList() {
     const grocery = {};
     document.querySelectorAll(".planned-recipe").forEach(item => {
@@ -53,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
         grocery[normalized] = grocery[normalized] ? grocery[normalized]+1 : 1;
       });
     });
+
     const groceryList = document.getElementById("groceryItems");
     groceryList.innerHTML = "";
     Object.entries(grocery).sort().forEach(([name, count]) => {
