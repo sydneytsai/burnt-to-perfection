@@ -17,7 +17,7 @@ const recipes = [
             "chocolate"
         ],
         url: "recipes/banana-bread.html",
-        image: "recipes/images/banana-bread.jpg"
+        image: "recipes/images/banana-bread.jpeg"
     },
     {
         name: "Miso Focaccia",
@@ -31,7 +31,7 @@ const recipes = [
             "oil"
         ],
         url: "recipes/miso-focaccia.html",
-        image: "recipes/images/miso-focaccia.jpg"
+        image: "recipes/images/miso-focaccia.jpeg"
     },
     {
         name: "Pineapple Buns",
@@ -51,7 +51,7 @@ const recipes = [
             "baking powder"
         ],
         url: "recipes/pineapple-buns.html",
-        image: "recipes/images/pineapple-buns.jpg"
+        image: "recipes/images/pineapple-buns.jpeg"
     },
     {
         name: "Cardamom Buns",
@@ -68,7 +68,7 @@ const recipes = [
             "garlic"
         ],
         url: "recipes/cardamom-buns.html",
-        image: "recipes/images/cardamom-buns.jpg"
+        image: "recipes/images/cardamom-buns.jpeg"
     },
     {
         name: "Pumpkin Bread",
@@ -88,7 +88,7 @@ const recipes = [
         ],
 
         url: "recipes/pumpkin-bread.html",
-        image: "recipes/images/pumpkin-bread.jpg"
+        image: "recipes/images/pumpkin-bread.jpeg"
     },
     {
         name: "Baked Sago Pudding",
@@ -103,7 +103,7 @@ const recipes = [
             "butter"
         ],
         url: "recipes/pumpkin-bread.html",
-        image: "recipes/images/pumpkin-bread.jpg"
+        image: "recipes/images/pumpkin-bread.jpeg"
     },
     {
         name: "Asian Pasta Salad",
@@ -122,7 +122,7 @@ const recipes = [
             "ponzu"
         ],
         url: "recipes/asian-pasta-salad.html",
-        image: "recipes/images/asian-pasta-salad.jpg"
+        image: "recipes/images/asian-pasta-salad.jpeg"
     },
     {
     name: "Mac and Cheese",
@@ -143,7 +143,7 @@ const recipes = [
         "panko"
     ],
     url: "recipes/mac-and-cheese.html",
-    image: "recipes/images/mac-and-cheese.jpg"
+    image: "recipes/images/mac-and-cheese.jpeg"
     },
     {
     name: "Miso Mushroom Leek Pasta",
@@ -159,7 +159,7 @@ const recipes = [
         "parsley"
     ],
     url: "recipes/miso-mushroom-leek-pasta.html",
-    image: "recipes/images/miso-mushroom-leek-pasta.jpg"
+    image: "recipes/images/miso-mushroom-leek-pasta.jpeg"
     },
     {
     name: "Beef Enoki Rolls",
@@ -176,7 +176,7 @@ const recipes = [
         "black pepper"
     ],
     url: "recipes/beef-enoki-rolls.html",
-    image: "recipes/images/beef-enoki-rolls.jpg"
+    image: "recipes/images/beef-enoki-rolls.jpeg"
     },
     {
     name: "Chicken Pot Pie",
@@ -198,7 +198,7 @@ const recipes = [
         "egg"
     ],
     url: "recipes/chicken-pot-pie.html",
-    image: "recipes/images/chicken-pot-pie.jpg"
+    image: "recipes/images/chicken-pot-pie.jpeg"
     },
     {
     name: "Hong Shao Rou",
@@ -215,7 +215,7 @@ const recipes = [
         "star anise"
     ],
     url: "recipes/hong-shao-rou.html",
-    image: "recipes/images/hong-shao-rou.jpg"
+    image: "recipes/images/hong-shao-rou.jpeg"
     },
     {
     name: "Steamed Buns",
@@ -229,7 +229,7 @@ const recipes = [
         "milk"
     ],
     url: "recipes/steamed-buns.html",
-    image: "recipes/images/steamed-buns.jpg"
+    image: "recipes/images/steamed-buns.jpeg"
     },
     {
     name: "Shortbread",
@@ -241,7 +241,7 @@ const recipes = [
         "butter"
     ],
     url: "recipes/shortbread.html",
-    image: "recipes/images/shortbread.jpg"
+    image: "recipes/images/shortbread.jpeg"
     },
     {
     name: "Brown Butter Oatmeal Cookies",
@@ -257,7 +257,7 @@ const recipes = [
         "salt"
     ],
     url: "recipes/brown-butter-oatmeal-cookies.html",
-    image: "recipes/images/brown-butter-oatmeal-cookies.jpg"
+    image: "recipes/images/brown-butter-oatmeal-cookies.jpeg"
     },
     {
     name: "Tiramisu",
@@ -272,7 +272,7 @@ const recipes = [
         "espresso"
     ],
     url: "recipes/tiramisu.html",
-    image: "recipes/images/tiramisu.jpg"
+    image: "recipes/images/tiramisu.jpeg"
     },
     {
     name: "Sweet Potato Miso Creme Brulee",
@@ -286,7 +286,7 @@ const recipes = [
         "japanese yam"
     ],
     url: "recipes/tiramisu.html",
-    image: "recipes/images/tiramisu.jpg"
+    image: "recipes/images/tiramisu.jpeg"
     },
     {
     name: "Marry Me Chicken Pasta",
@@ -305,6 +305,6 @@ const recipes = [
         "oilive oil"
     ],
     url: "recipes/marry-me-chicken-pasta.html",
-    image: "recipes/images/marry-me-chicken-pasta.jpg"
+    image: "recipes/images/marry-me-chicken-pasta.jpeg"
     }
 ];
