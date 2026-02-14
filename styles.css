@@ -16,6 +16,7 @@
 body {
   font-family: 'Quicksand', sans-serif;
   font-weight: 500;
+  background-color: var(--bg-soft);
 }
 
 h1, h2 a {
@@ -62,7 +63,7 @@ header .page-title::after {
 .tab {
   padding: 0.6rem 1.4rem;
   border-radius: 999px;
-  background: var(---white);
+  background: var(--bg-soft);
   color: var(--text-dark);
   font-weight: bold;
   transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
