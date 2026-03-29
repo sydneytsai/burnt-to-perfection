@@ -306,5 +306,16 @@ const recipes = [
     ],
     url: "recipes/marry-me-chicken-pasta.html",
     image: "recipes/images/marry-me-chicken-pasta.jpeg"
+    },
+    {
+    name: "Brown Butter Cornbread Cookies",
+    type: "dessert",
+    ingredients: [
+        "flour",
+        "cornmeal",
+        "corn"
+    ],
+    url: "recipes/brown-butter-cornbread-cookies.html",
+    image: "recipes/images/brown-butter-cornbread-cookies.jpeg"
     }
 ];
