@@ -317,5 +317,16 @@ const recipes = [
     ],
     url: "recipes/brown-butter-cornbread-cookies.html",
     image: "recipes/images/brown-butter-cornbread-cookies.jpeg"
+    },
+    {
+    name: "Brownies",
+    type: "dessert",
+    ingredients: [
+        "flour",
+        "cocoa powder",
+        "chocolate"
+    ],
+    url: "recipes/brownies.html",
+    image: "recipes/images/brownies.jpeg"
     }
 ];
