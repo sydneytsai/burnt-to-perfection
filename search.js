@@ -9,7 +9,47 @@ const resultMeta = document.getElementById("resultMeta");
 let ingredients = [];
 let hasSearched = false;
 
-// Add ingredient on Enter
+// Cache so each recipe HTML is only fetched once per session
+const ingredientCache = {};
+
+// Fetch a recipe's HTML and scrape all <li> inside ingredient <h2> sections
+async function getIngredients(recipe) {
+  if (ingredientCache[recipe.url]) return ingredientCache[recipe.url];
+
+  try {
+    const res = await fetch(recipe.url);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+
+    const found = [];
+    doc.querySelectorAll("h2").forEach(h2 => {
+      if (/ingredient/i.test(h2.textContent)) {
+        // Walk siblings to find the next <ul>
+        let el = h2.nextElementSibling;
+        while (el) {
+          if (el.tagName === "UL") {
+            el.querySelectorAll("li").forEach(li => {
+              const text = li.textContent.trim().toLowerCase();
+              if (text && !found.includes(text)) found.push(text);
+            });
+            break;
+          }
+          if (el.tagName === "H2" || el.tagName === "H3") break;
+          el = el.nextElementSibling;
+        }
+      }
+    });
+
+    ingredientCache[recipe.url] = found;
+    return found;
+  } catch (err) {
+    console.warn(`Could not fetch ingredients for ${recipe.name}:`, err);
+    return [];
+  }
+}
+
+// ─── Ingredient tags UI ───────────────────────────────────────────────────────
+
 ingredientInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && ingredientInput.value.trim() !== "") {
     e.preventDefault();
@@ -23,7 +63,6 @@ ingredientInput.addEventListener("keydown", (e) => {
   }
 });
 
-// Live search on type select change
 typeSelect.addEventListener("change", () => {
   if (hasSearched) runSearch();
 });
@@ -46,27 +85,52 @@ function renderIngredients() {
   });
 }
 
-function runSearch() {
+// ─── Search ───────────────────────────────────────────────────────────────────
+
+searchBtn.addEventListener("click", runSearch);
+
+async function runSearch() {
   hasSearched = true;
   const selectedType = typeSelect.value;
 
-  const results = recipes.filter(recipe => {
-    const typeMatch = selectedType === "any" || recipe.type === selectedType;
-    const ingredientsMatch = ingredients.length === 0 || ingredients.every(ing =>
-      recipe.ingredients.some(ri => ri.toLowerCase().includes(ing))
-    );
-    return typeMatch && ingredientsMatch;
-  });
+  // Filter by type first (cheap, no fetch needed)
+  const typeFiltered = recipes.filter(r =>
+    selectedType === "any" || r.type === selectedType
+  );
 
+  // Show loading state
+  searchResultsSection.innerHTML = `<div class="empty-state"><span class="empty-icon">⏳</span><p>Searching…</p></div>`;
+  resultMeta.textContent = "";
+
+  // If no ingredients entered, show all type-filtered results immediately
+  if (ingredients.length === 0) {
+    renderSearchResults(typeFiltered.map(r => ({ recipe: r, matched: [] })));
+    return;
+  }
+
+  // Fetch ingredients for all type-filtered recipes in parallel
+  const withIngredients = await Promise.all(
+    typeFiltered.map(async recipe => {
+      const recipeIngredients = await getIngredients(recipe);
+      const matched = ingredients.filter(ing =>
+        recipeIngredients.some(ri => ri.includes(ing))
+      );
+      const allMatch = ingredients.every(ing =>
+        recipeIngredients.some(ri => ri.includes(ing))
+      );
+      return allMatch ? { recipe, matched } : null;
+    })
+  );
+
+  const results = withIngredients.filter(Boolean);
   renderSearchResults(results);
 }
 
-searchBtn.addEventListener("click", runSearch);
+// ─── Render results ───────────────────────────────────────────────────────────
 
 function renderSearchResults(results) {
   searchResultsSection.innerHTML = "";
 
-  // Result count meta
   if (results.length === 0) {
     resultMeta.textContent = "";
     searchResultsSection.innerHTML = `
@@ -80,17 +144,12 @@ function renderSearchResults(results) {
 
   resultMeta.textContent = `${results.length} recipe${results.length !== 1 ? "s" : ""} found`;
 
-  results.forEach(recipe => {
-    // Find which searched ingredients matched
-    const matchedIngredients = ingredients.filter(ing =>
-      recipe.ingredients.some(ri => ri.toLowerCase().includes(ing))
-    );
-
+  results.forEach(({ recipe, matched }) => {
     const card = document.createElement("div");
     card.className = "recipe-card";
 
-    const matchBadges = matchedIngredients.length > 0
-      ? `<div class="match-badges">${matchedIngredients.map(m => `<span class="match-badge">✓ ${m}</span>`).join("")}</div>`
+    const matchBadges = matched.length > 0
+      ? `<div class="match-badges">${matched.map(m => `<span class="match-badge">✓ ${m}</span>`).join("")}</div>`
       : "";
 
     card.innerHTML = `
@@ -107,6 +166,8 @@ function renderSearchResults(results) {
   });
 }
 
+// ─── Clear ────────────────────────────────────────────────────────────────────
+
 clearSearchBtn.addEventListener("click", () => {
   ingredients = [];
   hasSearched = false;
@@ -117,7 +178,8 @@ clearSearchBtn.addEventListener("click", () => {
   resultMeta.textContent = "";
 });
 
-// Mobile hamburger
+// ─── Mobile nav ───────────────────────────────────────────────────────────────
+
 const hamburger = document.getElementById("hamburger");
 const pageNav = document.getElementById("pageNav");
 hamburger?.addEventListener("click", () => {
