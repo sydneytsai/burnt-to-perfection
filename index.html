@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Burnt to Perfection</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <header>
     <h1 class="page-title">Burnt to Perfection</h1>
-    <nav class="tab-nav">
+    <nav class="tab-nav page-nav" id="pageNav">
         <a href="index.html" class="page-link active">All Recipes</a>
         <a href="search.html" class="page-link">Find a Recipe</a>
         <a href="mealPrep.html" class="page-link">Meal Prep</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
 </header>
 
 <main>
-
-    <!-- Recipe Category Tabs -->
-    <nav class="tab-nav">
-        <a href="#main" class="tab" data-category="main">Mains</a>
-        <a href="#side" class="tab" data-category="side">Sides</a>
-        <a href="#dessert" class="tab" data-category="dessert">Desserts</a>
+    <nav class="tab-nav category-nav">
+        <a href="#" class="tab active" data-category="all">All <span class="tab-count" id="count-all"></span></a>
+        <a href="#" class="tab" data-category="main">Mains <span class="tab-count" id="count-main"></span></a>
+        <a href="#" class="tab" data-category="side">Sides <span class="tab-count" id="count-side"></span></a>
+        <a href="#" class="tab" data-category="dessert">Desserts <span class="tab-count" id="count-dessert"></span></a>
     </nav>
 
-    <!-- Recipe Grid -->
     <section id="allRecipes" class="recipe-grid"></section>
-
 </main>
 
 <footer>
-    <p>© 2026 Burnt to Perfection</p>
+    <div class="footer-inner">
+        <span class="footer-brand">Burnt to Perfection</span>
+        <nav class="footer-nav">
+            <a href="index.html">All Recipes</a>
+            <a href="search.html">Find a Recipe</a>
+            <a href="mealPrep.html">Meal Prep</a>
+        </nav>
+        <span class="footer-copy">© 2026 — Made with love & burnt edges</span>
+    </div>
 </footer>
 
-<!-- Scripts -->
 <script src="recipes.js"></script>
 <script src="index.js"></script>
-
 </body>
 </html>

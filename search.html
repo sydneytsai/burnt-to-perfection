@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Find a Recipe | Burnt to Perfection</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <header>
-        <h1 class="page-title">Burnt to Perfection</h1>
-        <nav class="tab-nav">
-            <a href="index.html" class="page-link">All Recipes</a>
-            <a href="search.html" class="page-link active">Find a Recipe</a>
-            <a href="mealPrep.html" class="page-link">Meal Prep</a>
-        </nav>
-    </header>
 
-    <main>
-        <div class="search-controls">
-            <!-- Ingredients input -->
-            <label class="search-label">
-                Ingredients you have:
-                <div id="ingredientTags" class="ingredient-tags"></div>
-                <input type="text" id="ingredientInput" placeholder="Type ingredient and press Enter">
-            </label>
+<header>
+    <h1 class="page-title">Burnt to Perfection</h1>
+    <nav class="tab-nav page-nav" id="pageNav">
+        <a href="index.html" class="page-link">All Recipes</a>
+        <a href="search.html" class="page-link active">Find a Recipe</a>
+        <a href="mealPrep.html" class="page-link">Meal Prep</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</header>
 
-            <!-- Dish type filter -->
-            <label class="search-label">
-                Dish type:
-                <select id="typeSelect">
-                    <option value="any">Any</option>
-                    <option value="main">Main</option>
-                    <option value="side">Side</option>
-                    <option value="dessert">Dessert</option>
-                </select>
-            </label>
+<main>
+    <div class="search-controls">
+        <label class="search-label">
+            Ingredients you have:
+            <div id="ingredientTags" class="ingredient-tags"></div>
+            <input type="text" id="ingredientInput" placeholder="Type an ingredient and press Enter…" autocomplete="off">
+        </label>
 
-            <!-- Search buttons -->
+        <label class="search-label">
+            Dish type:
+            <select id="typeSelect">
+                <option value="any">Any</option>
+                <option value="main">Main</option>
+                <option value="side">Side</option>
+                <option value="dessert">Dessert</option>
+            </select>
+        </label>
+
+        <div class="search-controls-row">
             <button id="searchBtn">Search</button>
-            <button id="clearSearchBtn">Clear Search</button>
+            <button id="clearSearchBtn">Clear</button>
         </div>
+    </div>
 
-        <!-- Search results -->
-        <section id="searchResults" class="recipe-grid"></section>
-    </main>
+    <div class="search-result-meta" id="resultMeta"></div>
+    <section id="searchResults" class="recipe-grid"></section>
+</main>
 
-    <footer>
-        <p>© 2026 Burnt to Perfection</p>
-    </footer>
+<footer>
+    <div class="footer-inner">
+        <span class="footer-brand">Burnt to Perfection</span>
+        <nav class="footer-nav">
+            <a href="index.html">All Recipes</a>
+            <a href="search.html">Find a Recipe</a>
+            <a href="mealPrep.html">Meal Prep</a>
+        </nav>
+        <span class="footer-copy">© 2026 — Made with love & burnt edges</span>
+    </div>
+</footer>
 
-    <!-- Scripts -->
-    <script src="recipes.js"></script>
-    <script src="search.js"></script>
+<script src="recipes.js"></script>
+<script src="search.js"></script>
 </body>
-
 </html>

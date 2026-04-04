@@ -1,58 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Burnt to Perfection - Meal Prep</title>
+    <title>Meal Prep | Burnt to Perfection</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <header>
     <h1 class="page-title">Burnt to Perfection</h1>
-    <nav class="tab-nav">
+    <nav class="tab-nav page-nav" id="pageNav">
         <a href="index.html" class="page-link">All Recipes</a>
         <a href="search.html" class="page-link">Find a Recipe</a>
         <a href="mealPrep.html" class="page-link active">Meal Prep</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
 </header>
 
-<main class="meal-layout">
-    <!-- Left: Drag Recipes -->
-    <section class="meal-recipes">
-        <h2>Drag Recipes</h2>
+<div class="meal-layout">
 
-        <!-- Recipe Filters -->
+    <!-- Left: Recipe List -->
+    <section class="meal-recipes">
+        <h2>Recipes</h2>
+        <p class="drag-hint">Drag onto a day — or click a recipe, then click a day</p>
+
         <div class="recipe-filters">
-            <button class="filter-btn" data-type="all">All</button>
+            <button class="filter-btn active" data-type="all">All</button>
             <button class="filter-btn" data-type="main">Mains</button>
             <button class="filter-btn" data-type="side">Sides</button>
             <button class="filter-btn" data-type="dessert">Desserts</button>
         </div>
 
-    <div id="recipeList"></div>
-</section>
+        <div id="recipeList"></div>
+    </section>
 
+    <!-- Right: Calendar + Clear -->
+    <div class="calendar-wrapper">
+        <div class="calendar-header">
+            <h2>Your Week</h2>
+            <button id="clearWeekBtn">Clear Week</button>
+        </div>
+        <section class="week-calendar" id="calendar"></section>
+    </div>
 
-    <!-- Right: Weekly Calendar -->
-    <section class="week-calendar" id="calendar"></section>
-
-</main>
+</div>
 
 <!-- Grocery List -->
 <section class="grocery-section">
     <h2>🛒 Grocery List</h2>
+    <p class="grocery-empty" id="groceryEmpty">Add recipes to your week to generate a grocery list.</p>
     <ul id="groceryItems"></ul>
 </section>
 
 <footer>
-    <p>© 2026 Burnt to Perfection</p>
+    <div class="footer-inner">
+        <span class="footer-brand">Burnt to Perfection</span>
+        <nav class="footer-nav">
+            <a href="index.html">All Recipes</a>
+            <a href="search.html">Find a Recipe</a>
+            <a href="mealPrep.html">Meal Prep</a>
+        </nav>
+        <span class="footer-copy">© 2026 — Made with love & burnt edges</span>
+    </div>
 </footer>
 
-<!-- Scripts -->
 <script src="recipes.js"></script>
 <script src="mealPrep.js"></script>
-
 </body>
 </html>
