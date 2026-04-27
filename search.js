@@ -1,3 +1,5 @@
+// search.js — relies on getIngredients() from ingredientFetcher.js
+
 const ingredientInput = document.getElementById("ingredientInput");
 const ingredientTagsContainer = document.getElementById("ingredientTags");
 const searchBtn = document.getElementById("searchBtn");
@@ -8,45 +10,6 @@ const resultMeta = document.getElementById("resultMeta");
 
 let ingredients = [];
 let hasSearched = false;
-
-// Cache so each recipe HTML is only fetched once per session
-const ingredientCache = {};
-
-// Fetch a recipe's HTML and scrape all <li> inside ingredient <h2> sections
-async function getIngredients(recipe) {
-  if (ingredientCache[recipe.url]) return ingredientCache[recipe.url];
-
-  try {
-    const res = await fetch(recipe.url);
-    const html = await res.text();
-    const doc = new DOMParser().parseFromString(html, "text/html");
-
-    const found = [];
-    doc.querySelectorAll("h2").forEach(h2 => {
-      if (/ingredient/i.test(h2.textContent)) {
-        // Walk siblings to find the next <ul>
-        let el = h2.nextElementSibling;
-        while (el) {
-          if (el.tagName === "UL") {
-            el.querySelectorAll("li").forEach(li => {
-              const text = li.textContent.trim().toLowerCase();
-              if (text && !found.includes(text)) found.push(text);
-            });
-            break;
-          }
-          if (el.tagName === "H2" || el.tagName === "H3") break;
-          el = el.nextElementSibling;
-        }
-      }
-    });
-
-    ingredientCache[recipe.url] = found;
-    return found;
-  } catch (err) {
-    console.warn(`Could not fetch ingredients for ${recipe.name}:`, err);
-    return [];
-  }
-}
 
 // ─── Ingredient tags UI ───────────────────────────────────────────────────────
 
@@ -93,37 +56,33 @@ async function runSearch() {
   hasSearched = true;
   const selectedType = typeSelect.value;
 
-  // Filter by type first (cheap, no fetch needed)
   const typeFiltered = recipes.filter(r =>
     selectedType === "any" || r.type === selectedType
   );
 
-  // Show loading state
   searchResultsSection.innerHTML = `<div class="empty-state"><span class="empty-icon">⏳</span><p>Searching…</p></div>`;
   resultMeta.textContent = "";
 
-  // If no ingredients entered, show all type-filtered results immediately
   if (ingredients.length === 0) {
     renderSearchResults(typeFiltered.map(r => ({ recipe: r, matched: [] })));
     return;
   }
 
-  // Fetch ingredients for all type-filtered recipes in parallel
+  // getIngredients() returns { raw, clean } — use raw for search matching
   const withIngredients = await Promise.all(
     typeFiltered.map(async recipe => {
-      const recipeIngredients = await getIngredients(recipe);
+      const { raw } = await getIngredients(recipe);
       const matched = ingredients.filter(ing =>
-        recipeIngredients.some(ri => ri.includes(ing))
+        raw.some(ri => ri.includes(ing))
       );
       const allMatch = ingredients.every(ing =>
-        recipeIngredients.some(ri => ri.includes(ing))
+        raw.some(ri => ri.includes(ing))
       );
       return allMatch ? { recipe, matched } : null;
     })
   );
 
-  const results = withIngredients.filter(Boolean);
-  renderSearchResults(results);
+  renderSearchResults(withIngredients.filter(Boolean));
 }
 
 // ─── Render results ───────────────────────────────────────────────────────────
