@@ -27,7 +27,7 @@ async function getIngredients(recipe) {
     const raw   = []; // full text — used for ingredient-based search matching
     const clean = []; // measurement-stripped — used for grocery list
 
-    doc.querySelectorAll("h2").forEach(h2 => {
+    doc.querySelectorAll("[hidden] h2, [aria-hidden='true'] h2").forEach(h2 => {
       if (/ingredient/i.test(h2.textContent)) {
         let el = h2.nextElementSibling;
         while (el) {

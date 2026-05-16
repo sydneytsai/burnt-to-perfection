@@ -1,48 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Baked Sago Pudding | Burnt to Perfection</title>
-    <link rel="stylesheet" href="../styles.css">
+  <meta charset="UTF-8">
+  <title>Baked Sago Pudding | Burnt to Perfection</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* ── Recipe page–specific styles ─────────────────────────── */
+    .recipe-hero {
+      position: relative;
+      background: var(--primary);
+      background-image: linear-gradient(135deg, #6a5ec4 0%, #8b7fd6 50%, #7C6FCD 100%);
+      padding: 2rem 2rem 3.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .recipe-hero::before {
+      content: "";
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,225,122,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .recipe-hero::after {
+      content: "";
+      position: absolute;
+      bottom: -30px; left: 10%;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-site-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0 0 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-site-title a { color: inherit; transition: color 0.2s; }
+    .hero-site-title a:hover { color: var(--secondary); }
+    .recipe-hero .page-title {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      margin: 0 0 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-tagline {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+      margin: 0 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.8rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.28);
+      backdrop-filter: blur(4px);
+      color: var(--white);
+      border-radius: var(--radius-pill);
+      padding: 0.4rem 1rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .meta-pill.type-pill {
+      background: var(--secondary);
+      color: var(--text-dark);
+      border-color: var(--secondary-dark);
+    }
+    .meta-pill .icon { font-size: 1rem; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.28);
+      color: var(--white);
+      border-radius: var(--radius-pill);
+      padding: 0.45rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+    .back-link:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+    .recipe-image-wrap {
+      max-width: 760px;
+      margin: -2.5rem auto 0;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .recipe-image-wrap img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      display: block;
+      border: 4px solid var(--white);
+    }
+    .type-badge-float {
+      position: absolute;
+      bottom: 1rem;
+      right: 2.5rem;
+      background: var(--secondary);
+      color: var(--text-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 3px 0 var(--secondary-dark);
+    }
+    .recipe-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+    .recipe-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .ingredients-col { display: flex; flex-direction: column; gap: 1.2rem; }
+    .ingredient-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid rgba(124,111,205,0.1);
+    }
+    .ingredient-card h2 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin: 0 0 0.9rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .ingredient-card ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .ingredient-card ul li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      line-height: 1.4;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(124,111,205,0.06);
+    }
+    .ingredient-card ul li:last-child { border-bottom: none; }
+    .ing-name { flex: 1; font-weight: 500; }
+    .ing-amount {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.82rem;
+      white-space: nowrap;
+      background: rgba(124,111,205,0.08);
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+    }
+    .steps-col h2 {
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin: 0 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .steps-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .step-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+      box-shadow: 0 3px 0 var(--primary-dark);
+    }
+    .step-text {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-dark);
+      flex: 1;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid rgba(124,111,205,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .step-item:hover .step-text {
+      transform: translateX(3px);
+      box-shadow: var(--shadow-md);
+    }
+    .tip-card {
+      background: rgba(255,225,122,0.2);
+      border: 1.5px solid var(--secondary);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.2rem;
+      margin-top: 1.5rem;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+    }
+    .tip-card h3 {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      margin: 0 0 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .tip-card ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-size: 0.86rem;
+    }
+    @media (max-width: 640px) {
+      .recipe-hero .page-title { font-size: 1.8rem; }
+      .recipe-image-wrap img { height: 240px; }
+      .recipe-layout { grid-template-columns: 1fr; }
+      .type-badge-float { right: 1.5rem; }
+    }
+
+  </style>
 </head>
-
 <body>
-    <header>
-        <h1 class="page-title">Baked Sago Pudding</h1>
-        <p>Creamy, rich, and not too sweet.</p>
-    </header>
 
-    <main>
-        <p><a href="../index.html" class="back-button">← Back to search</a></p>
-        <h2>Ingredients</h2>
+<!-- ── HERO ──────────────────────────────────────────────────────────── -->
+<header class="recipe-hero">
+  <p class="hero-site-title"><a href="../index.html">🔥 Burnt to Perfection</a></p>
+  <h1 class="page-title">Baked Sago Pudding</h1>
+  <p class="hero-tagline">Creamy, rich, and not too sweet.</p>
+  <div class="hero-meta">
+    <span class="meta-pill type-pill">Dessert</span>
+    <span class="meta-pill">⏱ ~45 min</span>
+    <span class="meta-pill">🌿 Vegetarian</span>
+  </div>
+  <a href="../index.html" class="back-link">← All Recipes</a>
+</header>
+
+<!-- ── HERO IMAGE ─────────────────────────────────────────────────────── -->
+<div class="recipe-image-wrap">
+  <img src="images/baked-sago-pudding.jpeg" alt="Baked Sago Pudding">
+  <span class="type-badge-float">dessert</span>
+</div>
+
+<!-- ── RECIPE BODY ─────────────────────────────────────────────────────── -->
+<main class="recipe-body">
+  <div class="recipe-layout">
+
+    <!-- Ingredients -->
+    <aside class="ingredients-col">
+      <div class="ingredient-card">
+        <h2>🧺 Ingredients</h2>
         <ul>
-            <li>sago (70 g)</li>
-            <li>custard powder (30 g)</li>
-            <li>milk (500 ml)</li>
-            <li>eggs (2)</li>
-            <li>sugar (70 g)</li>
-            <li>evaporated milk (80 ml)</li>
-            <li>butter (20 g)</li>
+          <li><span class="ing-name">Sago</span><span class="ing-amount">70 g</span></li>
+          <li><span class="ing-name">Custard powder</span><span class="ing-amount">30 g</span></li>
+          <li><span class="ing-name">Milk</span><span class="ing-amount">500 ml</span></li>
+          <li><span class="ing-name">Eggs</span><span class="ing-amount">2</span></li>
+          <li><span class="ing-name">Sugar</span><span class="ing-amount">70 g</span></li>
+          <li><span class="ing-name">Evaporated milk</span><span class="ing-amount">80 ml</span></li>
+          <li><span class="ing-name">Butter</span><span class="ing-amount">20 g</span></li>
         </ul>
-        
-        <h2>Instructions</h2>
-        <ol>
-            <li>Cook sago on medium heat for 10 minutes. Turn off the heat and rest for 15 minutes.</li>
-            <li>Wash sago under cold water once cooked and set aside.</li>
-            <li>Add the other 1/2 of the milk, evaporated milk, butter, and sugar in a pot.</li>
-            <li>Cook the milk mixture under medium heat at a simmer (do not boil).</li>
-            <li>While that is cooking, in a bowl, mix together custard powder, 1/2 of the milk, and eggs.</li>
-            <li>Gradually add the custard mixture into the simmering milk mixture and stir constantly.</li>
-            <li>The mixture should start to thicken significantly.</li>
-            <li>Once thickened, add the sago.</li>
-            <li>Pour the mixture into ramekins and placed onto a large sheet tray.</li>
-            <li>Create a water bath in the sheet tray and bake the puddings for 20-25 minutes.</li>
-            <li>Pudding is ready when there are light brown spots on the surface.</li>
-            <li>Let it cool for 10 minutes and enjoy!</li>
-        </ol>
-    </main>
+      </div>
+    </aside>
+
+    <!-- Instructions -->
+    <section class="steps-col">
+      <h2>👩‍🍳 Instructions</h2>
+      <ol class="steps-list">
+        <li class="step-item">
+          <span class="step-num">1</span>
+          <p class="step-text">Cook sago on medium heat for 10 minutes. Turn off the heat and rest for 15 minutes.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">2</span>
+          <p class="step-text">Wash sago under cold water once cooked and set aside.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">3</span>
+          <p class="step-text">Add the other 1/2 of the milk, evaporated milk, butter, and sugar in a pot.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">4</span>
+          <p class="step-text">Cook the milk mixture under medium heat at a simmer (do not boil).</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">5</span>
+          <p class="step-text">While that is cooking, in a bowl, mix together custard powder, 1/2 of the milk, and eggs.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">6</span>
+          <p class="step-text">Gradually add the custard mixture into the simmering milk mixture and stir constantly.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">7</span>
+          <p class="step-text">The mixture should start to thicken significantly.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">8</span>
+          <p class="step-text">Once thickened, add the sago.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">9</span>
+          <p class="step-text">Pour the mixture into ramekins and placed onto a large sheet tray.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">10</span>
+          <p class="step-text">Create a water bath in the sheet tray and bake the puddings for 20-25 minutes.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">11</span>
+          <p class="step-text">Pudding is ready when there are light brown spots on the surface.</p>
+        </li>
+        <li class="step-item">
+          <span class="step-num">12</span>
+          <p class="step-text">Let it cool for 10 minutes and enjoy!</p>
+        </li>
+      </ol>
+    </section>
+
+  </div>
+</main>
+
+<!-- ── MACHINE-READABLE DATA (for ingredientFetcher.js) ──────────── -->
+<div hidden aria-hidden="true">
+  <h2>Ingredients</h2>
+  <ul>
+    <li>sago (70 g)</li>
+    <li>custard powder (30 g)</li>
+    <li>milk (500 ml)</li>
+    <li>eggs (2)</li>
+    <li>sugar (70 g)</li>
+    <li>evaporated milk (80 ml)</li>
+    <li>butter (20 g)</li>
+  </ul>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">Burnt to Perfection</span>
+    <nav class="footer-nav">
+      <a href="../index.html">All Recipes</a>
+      <a href="../search.html">Find a Recipe</a>
+      <a href="../mealPrep.html">Meal Prep</a>
+    </nav>
+    <span class="footer-copy">© 2026 — Made with love & burnt edges</span>
+  </div>
+</footer>
+
 </body>
-
 </html>
-
